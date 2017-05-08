@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('user/{id}', 'PostsController@show')->name('posts');
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
+	Route::get('/', 'AdminPostsController@index')->name('admin.posts');
+	Route::get('instagram', 'AdminPostsController@reload')->name('instagram');
+	Route::get('settings', 'AdminSettingsController@index')->name('settings');
+	Route::post('settings', 'AdminSettingsController@save')->name('settings');
+});

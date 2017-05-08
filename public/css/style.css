@@ -1,0 +1,18 @@
+.user {
+	text-align: center;
+}
+
+.user h3 {
+	font-size: 2em;
+}
+
+.media .item {
+	display: block;
+	margin-bottom: 3em;
+}
+
+.media .item small {
+	display: none;
+}
+
+.media .item img { display: block; margin: 0 auto; }
