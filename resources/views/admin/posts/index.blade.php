@@ -15,6 +15,7 @@
 						<thead>
 							<th>#</th>
 							<th>thumb</th>
+							<th>Status</th>
 							<th>Actions</th>
 						</thead>
 						<tbody>
@@ -22,7 +23,19 @@
 							<tr>
 								<td>{{ $post->id }}</td>
 								<td><img src="{{ $post->thumb }}" alt="{{ $post->id }}"></td>
-								<td></td>
+								<td>{{ $post->status() }}</td>
+								<td>
+									<a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary">View</a>
+									@if ( $post->isPending() )
+									<a href="{{ route('admin.posts.approve', $post) }}" class="btn btn-success">
+										Approve
+									</a>
+									@else
+									<a href="{{ route('admin.posts.reject', $post) }}" class="btn btn-danger">
+										Reject
+									</a>
+									@endif
+								</td>
 							</tr>
 							@endforeach
 						</tbody>

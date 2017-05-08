@@ -22,6 +22,9 @@ Route::get('user/{id}', 'PostsController@show')->name('posts');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
 	Route::get('/', 'AdminPostsController@index')->name('admin.posts');
+	Route::get('/posts/{id}', 'AdminPostsController@edit')->name('admin.posts.edit');
+	Route::get('/posts/{id}/approve', 'AdminPostsController@approve')->name('admin.posts.approve');
+	Route::get('/posts/{id}/reject', 'AdminPostsController@reject')->name('admin.posts.reject');
 	Route::get('instagram', 'AdminPostsController@reload')->name('instagram');
 	Route::get('settings', 'AdminSettingsController@index')->name('settings');
 	Route::post('settings', 'AdminSettingsController@save')->name('settings');

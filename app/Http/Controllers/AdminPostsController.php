@@ -13,13 +13,14 @@ class AdminPostsController extends Controller
     public function index()
     {
     	$user = Auth::user();
-    	$posts = Post::where('user_id', $user->id)->orderBy('id', 'DESC')->get();
+    	$posts = Post::withPending()->where('user_id', $user->id)->orderBy('id', 'DESC')->get();
     	return view('admin.posts.index', compact('posts'));
     }
 
-    public function show($id)
+    public function edit($id)
     {
-    	
+    	$post = Post::withPending()->findOrFail($id);
+        return view('admin.posts.edit', compact('post'));
     }
 
     public function reload()
@@ -49,5 +50,20 @@ class AdminPostsController extends Controller
 		sort($posts);
 
 		Post::insert($posts);
+        return back();
+    }
+
+    public function approve($id)
+    {
+        $post = Post::withPending()->findOrFail($id);
+        $post->approve($post->id);
+        return back();
+    }
+
+    public function reject($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->markPending($post->id);
+        return back();
     }
 }
