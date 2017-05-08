@@ -8,7 +8,12 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <h2>Welcome to {{ config('app.name', 'Laravel') }}</h2>
+                    <p>
+                        Visit your <a href="{{ route('posts', Auth::user()) }}">Profile</a>
+                        <small>or</small>
+                        Setup your account on the <a href="{{ route('dashboard') }}">dashboard</a>
+                    </p>
                 </div>
             </div>
         </div>

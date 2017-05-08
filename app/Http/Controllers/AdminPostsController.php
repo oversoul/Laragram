@@ -56,6 +56,10 @@ class AdminPostsController extends Controller
     public function approve($id)
     {
         $post = Post::withPending()->findOrFail($id);
+        if ( Auth::user()->id != $post->user_id ) {
+            throw new Exception("Can't change post status");
+        }
+
         $post->approve($post->id);
         return back();
     }
@@ -63,7 +67,23 @@ class AdminPostsController extends Controller
     public function reject($id)
     {
         $post = Post::findOrFail($id);
+        if ( Auth::user()->id != $post->user_id ) {
+            throw new Exception("Can't change post status");
+        }
+
         $post->markPending($post->id);
+        return back();
+    }
+
+    public function approveAll()
+    {
+        Post::withAnyStatus()->where('user_id', Auth::user()->id)->update(['status' => 1]);
+        return back();
+    }
+
+    public function rejectAll()
+    {
+        Post::withAnyStatus()->where('user_id', Auth::user()->id)->update(['status' => 0]);
         return back();
     }
 }

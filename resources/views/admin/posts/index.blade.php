@@ -8,7 +8,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					Instagram Posts
-					<a href="{{ route('instagram') }}" class="btn btn-primary btn-xs pull-right">Load Posts</a>
+					<div class="pull-right">
+						<a href="{{ route('admin.posts.approveall') }}" class="btn btn-success btn-xs">Approve All</a> <a href="{{ route('admin.posts.rejectall') }}" class="btn btn-danger btn-xs">Reject All</a> <a href="{{ route('instagram') }}" class="btn btn-primary btn-xs">Load Posts</a>
+					</div>
 				</div>
 				<div class="panel-body">
 					<table class="table">

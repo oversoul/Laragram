@@ -16,3 +16,12 @@
 }
 
 .media .item img { display: block; margin: 0 auto; }
+
+.dash .item {
+	padding-top: 3em;
+	border-radius: 2px;
+	text-align: center;
+	padding-bottom: 3em;
+	border: 1px solid #ddd;
+	background-color: #efefef;
+}
