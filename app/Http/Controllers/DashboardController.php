@@ -15,7 +15,7 @@ class DashboardController extends Controller
     	$id = Auth::user()->id;
     	$posts = Post::withAnyStatus()->where('user_id', $id)->count();
     	$approved = Post::approved()->where('user_id', $id)->count();;
-    	$postponed = Post::postponed()->where('user_id', $id)->count();;
+    	$postponed = Post::pending()->where('user_id', $id)->count();;
     	return view('admin.dashboard', compact('posts', 'approved', 'postponed'));
     }
 }

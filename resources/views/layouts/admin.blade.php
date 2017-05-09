@@ -50,6 +50,7 @@
 					<!-- Right Side Of Navbar -->
 					<ul class="nav navbar-nav navbar-right">
 						<!-- Authentication Links -->
+						<li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 						<li><a href="{{ route('admin.posts') }}">Posts</a></li>
 						<li><a href="{{ route('settings') }}">Settings</a></li>
 						<li class="dropdown">
